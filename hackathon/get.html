@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title> Map </title>
+  </head>
+  <body>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<a class="navbar-img" href="#">
+    <img src="I:\\project_hack\\templet\\logo.jpeg" width="30" height="30" alt="">
+  </a>
+	
+  <a class="navbar-brand" href="#">Housing</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Know your price</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Compare
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link region" href="I:\\project_hack\\templet\\get.html" >Region Trend</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+        <div id='printoutPanel'></div>
+        <div id='myMap' style='width: 50vw; height: 50vh;'></div>
+		
+        <script type='text/javascript'>
+		function initMap() {
+                	var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                    	credentials: 'AksmssLZa17_8yw3mGi1YTNEe8HFVfe_lXi8niVJiMzQn2SKIggB1jNlu70aRymo',
+			center: new Microsoft.Maps.Location(42.026798, -93.620178),
+                    zoom: 11
+                });
+		var center = map.getCenter();
+                	var pushpin = new Microsoft.Maps.Pushpin(center, { 
+					enableHoverStyle: true,
+					enableClickedStyle: true ,
+					color: '#f00',
+					draggable: true
+				});
+                	map.entities.push(pushpin);
+				
+			document.getElementById('printoutPanel').innerHTML = 'point to the location';
+                	Microsoft.Maps.Events.addHandler(
+					pushpin,
+					'dragend',
+					function (args) {
+						document.getElementById('printoutPanel').innerHTML = pushpin.getLocation().latitude + 						',' + pushpin.getLocation().longitude;
+						document.getElementById('printoutPanel').innerHTML = findArea(pushpin.getLocation().latitude,pushpin.getLocation().longitude);
+
+function findArea(lat, lon)
+		{
+			if ((lat > 42.043590 && lat < 42.122765) && (lon > -93.620403  && lon < -93.560484)) 
+					{	
+							
+							return "Bloomington" ;
+					}
+			else if ((lat > 42.077971 && lat < 42.122765) && (lon > -93.698625  && lon < -93.620639)) 
+					{	
+							
+							return "Gilbert" ;
+					}
+			else if ((lat > 42.043590 && lat < 42.077961) && (lon > -93.698625  && lon < -93.620639)) 
+					{	
+							
+							return "Northridge Heights" ;
+					}
+			else if ((lat > 42.022842 && lat < 42.043590 ) && (lon > -93.698625 && lon < -93.664799)) 
+					{	
+							
+							return "Sawyer" ;
+					}
+			else if ((lat > 42.022842 && lat < 42.043590) && (lon > -93.664799 && lon < -93.639908)) 
+					{	
+							
+							return "Veenker" ;
+					}
+			else if ((lat > 42.022842 && lat < 42.043590) && (lon > -93.639908  && lon < -93.600666)) 
+					{	
+							
+							return "Brookside" ;
+					}
+			else if ((lat > 42.006703 && lat < 42.022842 ) && (lon > -93.678734  && lon < -93.652548)) 
+					{	
+							
+							return "Edward School" ;
+					}
+			
+			else if ((lat > 42.006703 && lat < 42.022842) && (lon > -93.652548  && lon < -93.634134)) 
+					{	
+							
+							return "Bluestem" ;
+					}
+			else if ((lat > 42.006703 && lat < 42.022842) && (lon >  -93.634134 && lon < -93.600666)) 
+					{	
+							
+							return "Crawford" ;
+					}
+			else if ((lat > 41.993949 && lat < 42.022842) && (lon > -93.698625 && lon < -93.678734)) 
+					{	
+							
+							return "College Creek" ;
+					}
+			else if ((lat > 41.993949 && lat < 42.006703) && (lon > -93.678734  && lon < -93.610092)) 
+					{	
+							
+							return "Meadaw" ;
+					}
+			else if ((lat > 41.993949 && lat < 42.006703 ) && (lon > -93.610092 && lon < -93.560484)) 
+					{	
+							
+							return "Mitchell" ;
+					}
+			else
+					{return "Agricultural Zone" ;}
+						
+		}
+		}
+	
+				);
+            }
+
+		
+        </script>
+	
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=initMap' async defer></script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

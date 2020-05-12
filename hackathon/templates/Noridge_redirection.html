@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+
+<meta charset="UTF-8">
+  <title>House Price Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	    <!-- Required meta tags -->
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+<meta content="noindex, nofollow" name="robots">
+<!-- Include CSS File Here -->
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Bootstrap CSS -->
+   
+
+   
+	
+
+
+  
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+<a class="navbar-brand" href="#">
+    <img src="{{url_for('static', filename='logo.jpg')}}" alt="logo" style="width:50px;">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Know your price</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" href="https://integrations.eu-gb.assistant.watson.cloud.ibm.com/web/public/628c5ea9-f6c7-4443-bc1b-a2db765ea500">Chatbot</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link region" href="/get" >Region Trend</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+
+
+
+
+<form action="{{ url_for('predict')}}" method="post" style="text-align: center;">
+
+
+
+    
+     
+   <h1 style="color:white">House Pricing</h1>
+   <label for="Utilities" style="color: white">Utilities:</label>
+   <select id="Utilities" name="Utilities">
+      <option id="AllPub" value="AllPub">All facility</option>
+      <option id="NoSeWa" value="NoSeWa">No facility</option>
+  </select>
+<br>
+<label for="Neighborhood" style="color: white">Neighborhood:</label>
+  <select id="Neighborhood" name="Neighborhood">
+   
+      <option id="NoRidge" value="NoRidge">Northridge</option>
+ 
+  </select>
+
+   <br>
+   <label for="HouseStyle" style="color: white">HouseStyle:</label>
+<select id="HouseStyle" name="HouseStyle" onchange="myFunction()">
+      <option id="0Story" value="0Story" >choose</option>
+      <option id="1Story" value="1Story">One story</option>
+      <option id="2Story" value="2Story" >Two story</option>
+  </select>
+  <br>
+
+<script type="text/javascript">
+  function myFunction()
+  {
+      var mylist = document.getElementById("HouseStyle");
+
+      if(mylist.options[mylist.selectedIndex].text =="One story")
+      {
+        document.getElementById("2ndFlrSF").value = 0;
+      }
+      
+      
+
+  }
+  
+</script>
+
+  <label for="Exterior1st" style="color: white;">Exterior1st:</label>
+  <select id="Exterior1st" name="Exterior1st">
+      <option id="MetalSd" value="MetalSd">Hard Board</option>
+      <option id="HdBoard" value="HdBoard">Metal Siding</option>
+      <option id="VinylSd" value="VinylSd">Vinyl Siding</option>
+  </select>
+  <br>
+
+    
+    <input type="text" name="1stFlrSF" placeholder="Area of 1st Floor(SqFt)" required="required" style="width: 25%" style="margin-left: 100px;" /><br>
+    
+    <input type="text" id ="2ndFlrSF" name="2ndFlrSF" placeholder="Area of 2nd Floor(SqFt)" style="width: 25%" style="margin-left: 100px;" /><br>
+   
+    <input type="text" name="GrLivArea" placeholder="Above Ground Living Area(SqFt)" required="required" style="width: 25%" style="margin-left: 100px;"/ ><br>
+   
+    <input type="text" name="FullBath" placeholder="Fullbathroom Above Ground" required="required" style="width: 25%" style="margin-left: 100px;"/><br>
+    
+    <input type="text" name="BedroomAbvGr" placeholder="Bedrooms Above Basement Level" required="required"style="width: 25%" style="margin-left: 100px;" /><br><br>
+    
+       <button type="submit" class="btn btn-primary btn-large" >Predict</button><br>
+      
+    </form>
+
+
+ 
+<h2 style="text-align: center;color: white">
+{{ prediction_text }}
+</h2>
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
