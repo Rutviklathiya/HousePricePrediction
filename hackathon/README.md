@@ -12,19 +12,15 @@ This project has four major parts :
 4. templates - This folder contains the HTML template to allow user to enter employee detail and displays the predicted House price.
 
 ### Running the project
-1. Ensure that you are in the project home directory. Create the machine learning model by running below command -
-```
-python model.py
-```
 This would create a serialized version of our model into a file model.pkl
 
-2. Run extra.py using below command to start Flask API
+1. Run extra.py using below command to start Flask API
 ```
 python extra.py
 ```
 By default, flask will run on port 5000.
 
-3. Navigate to URL http://localhost:5000
+2. Navigate to URL http://localhost:5000
 
 You should be able to view the homepage as below link:
 https://rlathiya.weebly.com/uploads/1/2/4/0/124059345/screenshot-from-2020-05-12-10-52-56_orig.png
