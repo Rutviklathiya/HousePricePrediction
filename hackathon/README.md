@@ -18,7 +18,7 @@ python model.py
 ```
 This would create a serialized version of our model into a file model.pkl
 
-2. Run app.py using below command to start Flask API
+2. Run extra.py using below command to start Flask API
 ```
 python extra.py
 ```
@@ -26,13 +26,20 @@ By default, flask will run on port 5000.
 
 3. Navigate to URL http://localhost:5000
 
-You should be able to view the homepage as below :
+You should be able to view the homepage as below link:
 https://rlathiya.weebly.com/uploads/1/2/4/0/124059345/screenshot-from-2020-05-12-10-52-56_orig.png
 
-Enter valid numerical values in all 3 input boxes and hit Predict.
+Enter valid numerical values in all  input boxes and hit Predict.
 
-If everything goes well, you should  be able to see the predcited salary vaule on the HTML page!
-![alt text](http://www.thepythonblog.com/wp-content/uploads/2019/02/Result.png)
+Or you can use the chatbot to predict the price as below link:
+https://rlathiya.weebly.com/uploads/1/2/4/0/124059345/screenshot-from-2020-05-12-10-57-20_orig.png
+
+Also watch the exploratory data analysis as below link:
+https://124059345-784427355905349158.preview.editmysite.com/uploads/1/2/4/0/124059345/screenshot-from-2020-05-12-10-57-49_orig.png
+
+The maps iterface would look like this :
+https://rlathiya.weebly.com/uploads/1/2/4/0/124059345/screenshot-from-2020-05-12-10-57-40_orig.png
+
 
 4. You can also send direct POST requests to FLask API using Python's inbuilt request module
 Run the beow command to send the request with some pre-popuated values -
